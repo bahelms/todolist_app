@@ -1,10 +1,18 @@
 class TodoList
 
-  def initialize(file)
+  def initialize(file="")
+    @file = file
     @list = []
-    File.open(file) do |f| 
-      f.each { |line| @list << line.chomp }
+
+    if File.exist? @file
+      File.open @file  do |f| 
+        f.each { |line| @list << line.chomp }
+      end
     end
+  end
+
+  def display
+    
   end
   
 end

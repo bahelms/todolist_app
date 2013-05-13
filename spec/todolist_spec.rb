@@ -24,9 +24,22 @@ describe TodoList do
         list.should eql @file
       end
 
-      it "creates a new file if given file doesn't exist" do
+      it "only reads in a file if it exists" do
         list = TodoList.new 'xxxx.txt'
-        File.exist?('xxxx.txt').should be_true
+        list.instance_eval { @list }.should be_empty
+        list.instance_eval { @file }.should eql 'xxxx.txt'
+      end
+    end
+
+    context "without a filename argument" do
+      it "returns a TodoList object" do
+        TodoList.new.should be_an_instance_of TodoList
+      end
+
+      it "will make the filename an empty string" do
+        list = TodoList.new
+        list.instance_eval { @file }.should be_empty
+        list.instance_eval { @list }.should be_empty
       end
     end
   end
