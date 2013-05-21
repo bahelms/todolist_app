@@ -1,56 +1,52 @@
-This is a To-Do list app exercise I came up with to practice Ruby.
+This is a command line To-Do list app written in Ruby.
+It allows you to create a list of items from a CLI, and store it in a file for 
+later access.
 
-You can run the program from the command line:  
-$ todolist file.txt   
+Start the program with: 
 
-You'll have to add it to your machine's executable path.
+    todolist [filename]
 
-Command Line Interface
+The filename is optional, and leaving it off will start a new list from scratch.
+
+Current commands
 ----
-An explanation of the commands:
+* add
+* del
+* save
+* display
 
-(add)  
+----
+(add)  Adds an item to the list
 
-    syntax: add "item" position
-    example: add "Eat chunky bacon" 1
-        # This line adds the item to the first position in 
-        # the list because chunky bacon is a high priority
-    example: add "Take a shower"
-        # When the position number is ignored, the item is added 
-        # to the bottom of the list. I agree.
+    add "item" [position_number]
 
-(del)ete  
+* Example: add "Eat chunky bacon" 1  # Adds the item to the first position in 
+                                     # the list.
+* Example: add "Take a shower"       # When the position number is omitted, the
+                                     # item is added to the bottom of the list.
 
-    syntax: del position
-    example: del 3
-        # Deletes the third item in the list
-    example: del
-        # Deletes the last item
+(del)ete  Deletes an item from the list
 
-(re)order  #NOT IMPLEMENTED  
+    del [position_number]
 
-    syntax: re old_position new_position
-    example: re 3 1
-        # Moves whatever is in 3rd position to 1st
-        # Everything else moves down one position
+* Example: del 3  # Deletes the third item in the list
+* Example: del    # Deletes the last item
 
-(d)isplay  
+(save)  Saves the list to a file
 
-    syntax: d  
-        # Displays the list again, for your pleasure
+    save
 
-(s)ave  
+(d)isplay  Displays the list
 
-    syntax: s  
-        # Saves the list to the external file already given
+	d
 
-(q)uit  
+(q)uit  Quits the program
 
-    syntax: q  
-        # Closes this POS todo app
+	q
 
-(h)elp  
-    # I think you know what this means
+(h)elp  Displays the help page with a list of the commands
+
+	h
 
 Things to add
 ----

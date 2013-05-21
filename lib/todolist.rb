@@ -11,8 +11,8 @@ class TodoList
     end
   end
 
-  def display
+  def add(item)
     
   end
-  
+
 end

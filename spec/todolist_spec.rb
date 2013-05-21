@@ -1,8 +1,8 @@
-require_relative '../todolist'
+require_relative '../lib/todolist'
 
 describe TodoList do
   before :all do
-    @file = ['Title: Test List', '1. Item1', '2. Item2', '3. Item3']
+    @file = ['Test List', 'Item1', 'Item2', 'Item3']
     File.open 'test.txt', 'w' do |f|
       @file.each { |e| f.puts e }
     end
@@ -45,27 +45,77 @@ describe TodoList do
   end
 
   describe "#add" do
-    
+    context "without a position number argument" do
+      it "should add an item to the end of the list" do
+        @testlist.add('New Item')
+        item = @testlist.instance_eval(@list)
+        expect(item[4]).to eq 'New Item'
+      end
+    end
+
+    context "with a position number" do
+      it "should add an item at that position" do
+        
+      end
+    end
   end
 
   describe "#delete" do
-    
+    context "without a position number" do
+      it "should delete the item at the end of the list" do
+        
+      end
+    end
+
+    context "with a position number" do
+      it "should delete the item at that position" do
+        
+      end
+    end
   end
  
   describe "#display" do
-    
+    it "should add 'Title: ' to the first item" do
+      
+    end
+
+    it "should add numbers to the beginning of each item" do
+      
+    end
+
+    it "should display the list to the screen" do
+      
+    end
   end
 
   describe "#save" do
-    
+    context "with a specified filename" do
+      it "should save the list to that file" do
+        
+      end
+    end
+
+    context "with no filename given" do
+      it "should ask for a filename to save to" do
+        
+      end
+
+      it "should save to that file" do
+        
+      end
+    end
   end
 
   describe "#quit" do
-    
+    it "should quit the program" do
+      
+    end
   end
 
   describe "#help" do
-    
+    it "should display the help string" do
+      
+    end
   end
 
 end
