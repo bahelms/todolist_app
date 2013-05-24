@@ -8,40 +8,30 @@ describe TodoList do
     end
   end
 
+  after :all do
+    FileUtils.rm 'test.txt'
+  end
+
   before :each do
     @testlist = TodoList.new 'test.txt'
   end
 
   describe "#new" do
-    context "with a filename argument" do
-      it "should return a TodoList object" do
-        expect(@testlist).to be_an_instance_of TodoList
-      end
-
-      it "should store the file name" do
-        expect(@testlist.file).to eq 'test.txt'
-      end
-
-      it "should open the file and store its contents" do
-        expect(@testlist.list).to eql @file_list
-      end
-
-      it "should only read in a file if it exists" do
-        new_list = TodoList.new 'xxxx.txt'
-        expect(new_list.list).to be_empty
-      end
+    it "should return a TodoList object" do
+      expect(@testlist).to be_an_instance_of TodoList
     end
 
-    context "without a filename argument" do
-      it "should return a TodoList object" do
-        expect(TodoList.new).to be_an_instance_of TodoList
-      end
+    it "should store the file name" do
+      expect(@testlist.file).to eq 'test.txt'
+    end
 
-      it "should initialize the file and list to empty" do
-        new_list = TodoList.new
-        expect(new_list.list).to be_empty
-        expect(new_list.file).to be_empty
-      end
+    it "should open the file and store its contents" do
+      expect(@testlist.list).to eql @file_list
+    end
+
+    it "should only read in a file if it exists" do
+      new_list = TodoList.new 'xxxx.txt'
+      expect(new_list.list).to be_empty
     end
   end
 
@@ -82,49 +72,27 @@ describe TodoList do
     end
   end
  
-  describe "#display" do
-    it "should add 'Title: ' to the first item" do
-      
+  describe "#output" do
+    let(:output) { @testlist.output }
+
+    it "should return an array" do
+      expect(output).to be_an_instance_of Array
+    end
+
+    it "should add 'Title: ' to the first item of output" do
+      expect(output[0]).to match /Title: /
     end
 
     it "should add numbers to the beginning of each item" do
       
     end
-
-    it "should display the list to the screen" do
-      
-    end
   end
 
   describe "#save" do
-    context "with a specified filename from command line" do
-      it "should save the list to that file" do
-        FileUtils.rm @testlist.file
-        @testlist.save
-        expect(File.exist?(@testlist.file)).to be_true
-      end
-    end
-
-    context "with no filename given" do
-      it "should ask for a filename to save to" do
-        new_list = TodoList.new
-      end
-
-      it "should save to that file" do
-        
-      end
-    end
-  end
-
-  describe "#quit" do
-    it "should quit the program" do
-      
-    end
-  end
-
-  describe "#help" do
-    it "should display the help string" do
-      
+    it "should save the list to that file" do
+      FileUtils.rm @testlist.file
+      @testlist.save
+      expect(File.exist?(@testlist.file)).to be_true
     end
   end
 

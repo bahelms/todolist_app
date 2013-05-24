@@ -1,7 +1,7 @@
 class TodoList
   attr_reader :list, :file
 
-  def initialize(file="")
+  def initialize(file)
     @file = file
     @list = []
 
@@ -12,17 +12,18 @@ class TodoList
     end
   end
 
-  def add(item, pos)
-    @list << item if pos.nil?
-    if pos == 0 or pos.downcase == 'title'
+  def add(item, pos=nil)
+    return @list << item if pos.nil?
+
+    if pos == 0 or pos == 'title'
       @list[0] = item
     else
       @list.insert(pos, item)
     end
   end
 
-  def delete(pos)
-    @list.pop if pos.nil?
+  def delete(pos=nil)
+    return @list.pop if pos.nil?
     @list.delete_at(pos)
   end
 
@@ -32,4 +33,8 @@ class TodoList
     end
   end
 
+  def output
+    list = []
+    list << "Title: #{@list[0]}"
+  end
 end

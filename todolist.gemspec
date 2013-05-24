@@ -7,5 +7,5 @@ Gem::Specification.new do |s|
   s.author = ['Barrett Helms']
   s.email = ['jimbonkgit@gmail.com']
   s.files = ["lib/todolist.rb", "lib/todolist/commands.rb"]
-  # s.executable << 'todolist'
+  s.executable << 'todolist'
 end
