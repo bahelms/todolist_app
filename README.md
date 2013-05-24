@@ -4,7 +4,7 @@ later access.
 
 Start the program with: 
 
-    todolist [filename]
+    $ todolist [filename]
 
 The filename is optional, and leaving it off will start a new list from scratch.
 
@@ -14,44 +14,44 @@ Current commands
 * del
 * save
 * display
+* help
+* quit
 
 ----
-(add)  Adds an item to the list
+(add) -- Adds an item to the list
 
-    add "item" [position_number]
+    $ add "item" [position_number]
 
-* Example: add "Eat chunky bacon" 1  # Adds the item to the first position in 
-                                     # the list.
-* Example: add "Take a shower"       # When the position number is omitted, the
-                                     # item is added to the bottom of the list.
+* Example: add "Eat chunky bacon" 1    # Adds the item to the first position in the list.
+* Example: add "Take a shower"         # When the position number is omitted, the item is added to the bottom of the list.
+* Example: add "Brewday List" title    # Changes the title of the list
 
-(del)ete  Deletes an item from the list
+(del)ete  -- Deletes an item from the list
 
-    del [position_number]
+    $ del [position_number]
 
-* Example: del 3  # Deletes the third item in the list
-* Example: del    # Deletes the last item
+* Example: del 3    # Deletes the third item in the list
+* Example: del      # Deletes the last item
 
-(save)  Saves the list to a file
+(save) -- Saves the list to a file
 
-    save
+    $ save
 
-(d)isplay  Displays the list
+(d)isplay -- Displays the list
 
-	d
+	$ d
 
-(q)uit  Quits the program
+(q)uit -- Quits the program
 
-	q
+	$ q
 
-(h)elp  Displays the help page with a list of the commands
+(h)elp -- Displays the help page with a list of the commands
 
-	h
+	$ h
 
 Things to add
 ----
-* Create new list - ask for save
-* Ask for save on quit
+* Save lists to CSV so one file can hold multiple lists
 * Redorder items in a list
 * Auto add .txt to file names
 * Multiple lines for one item

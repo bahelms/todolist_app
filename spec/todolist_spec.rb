@@ -2,9 +2,9 @@ require_relative '../lib/todolist'
 
 describe TodoList do
   before :all do
-    @file = ['Test List', 'Item1', 'Item2', 'Item3']
+    @file_list = ['Test List', 'Item1', 'Item2', 'Item3']
     File.open 'test.txt', 'w' do |f|
-      @file.each { |e| f.puts e }
+      @file_list.each { |e| f.puts e }
     end
   end
 
@@ -14,48 +14,54 @@ describe TodoList do
 
   describe "#new" do
     context "with a filename argument" do
-      it "takes a file name and returns a TodoList object" do
-        @testlist.should be_an_instance_of TodoList
+      it "should return a TodoList object" do
+        expect(@testlist).to be_an_instance_of TodoList
       end
 
-      it "opens the file and fills an array with it's contents" do
-        list = @testlist.instance_eval { @list }
-        list.should be_an_instance_of Array
-        list.should eql @file
+      it "should store the file name" do
+        expect(@testlist.file).to eq 'test.txt'
       end
 
-      it "only reads in a file if it exists" do
-        list = TodoList.new 'xxxx.txt'
-        list.instance_eval { @list }.should be_empty
-        list.instance_eval { @file }.should eql 'xxxx.txt'
+      it "should open the file and store its contents" do
+        expect(@testlist.list).to eql @file_list
+      end
+
+      it "should only read in a file if it exists" do
+        new_list = TodoList.new 'xxxx.txt'
+        expect(new_list.list).to be_empty
       end
     end
 
     context "without a filename argument" do
-      it "returns a TodoList object" do
-        TodoList.new.should be_an_instance_of TodoList
+      it "should return a TodoList object" do
+        expect(TodoList.new).to be_an_instance_of TodoList
       end
 
-      it "will make the filename an empty string" do
-        list = TodoList.new
-        list.instance_eval { @file }.should be_empty
-        list.instance_eval { @list }.should be_empty
+      it "should initialize the file and list to empty" do
+        new_list = TodoList.new
+        expect(new_list.list).to be_empty
+        expect(new_list.file).to be_empty
       end
     end
   end
 
   describe "#add" do
-    context "without a position number argument" do
+    context "without a position number"  do
       it "should add an item to the end of the list" do
         @testlist.add('New Item')
-        item = @testlist.instance_eval(@list)
-        expect(item[4]).to eq 'New Item'
+        expect(@testlist.list[4]).to eq 'New Item'
       end
     end
 
     context "with a position number" do
       it "should add an item at that position" do
-        
+        @testlist.add('New Item', 2)
+        expect(@testlist.list[2]).to eq 'New Item'
+      end
+
+      it "should change the title when position is 'title' or 0" do
+        @testlist.add('New Title', 'title')
+        expect(@testlist.list[0]).to eq 'New Title'
       end
     end
   end
@@ -63,13 +69,15 @@ describe TodoList do
   describe "#delete" do
     context "without a position number" do
       it "should delete the item at the end of the list" do
-        
+        @testlist.delete
+        expect(@testlist.list.last).to eq 'Item2'
       end
     end
 
     context "with a position number" do
       it "should delete the item at that position" do
-        
+        @testlist.delete(1)
+        expect(@testlist.list[1]).to eq 'Item2'
       end
     end
   end
@@ -89,15 +97,17 @@ describe TodoList do
   end
 
   describe "#save" do
-    context "with a specified filename" do
+    context "with a specified filename from command line" do
       it "should save the list to that file" do
-        
+        FileUtils.rm @testlist.file
+        @testlist.save
+        expect(File.exist?(@testlist.file)).to be_true
       end
     end
 
     context "with no filename given" do
       it "should ask for a filename to save to" do
-        
+        new_list = TodoList.new
       end
 
       it "should save to that file" do
