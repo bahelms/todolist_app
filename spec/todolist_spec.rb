@@ -39,7 +39,7 @@ describe TodoList do
     context "without a position number"  do
       it "should add an item to the end of the list" do
         @testlist.add('New Item')
-        expect(@testlist.list[4]).to eq 'New Item'
+        expect(@testlist.list.last).to eq 'New Item'
       end
     end
 
@@ -51,7 +51,7 @@ describe TodoList do
 
       it "should change the title when position is 'title' or 0" do
         @testlist.add('New Title', 'title')
-        expect(@testlist.list[0]).to eq 'New Title'
+        expect(@testlist.list.first).to eq 'New Title'
       end
     end
   end
@@ -73,18 +73,30 @@ describe TodoList do
   end
  
   describe "#output" do
+    let(:array)  { @testlist.list }
     let(:output) { @testlist.output }
 
     it "should return an array" do
       expect(output).to be_an_instance_of Array
     end
 
+    it "should return the entire list" do
+      expect(output.size).to eq @testlist.list.size
+    end
+
+    it "should not alter the @list variable" do
+      @testlist.output
+      expect(array).to eq @testlist.list
+    end
+
     it "should add 'Title: ' to the first item of output" do
-      expect(output[0]).to match /Title: /
+      expect(output.first).to match /Title: /
     end
 
     it "should add numbers to the beginning of each item" do
-      
+      expect(output[1]).to match /\d\. /
+      expect(output[2]).to match /\d\. /
+      expect(output[3]).to match /\d\. /
     end
   end
 

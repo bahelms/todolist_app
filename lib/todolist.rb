@@ -34,7 +34,9 @@ class TodoList
   end
 
   def output
-    list = []
-    list << "Title: #{@list[0]}"
+    output_list = []
+    @list.each_with_index { |item, i| output_list << "#{i}. #{item}"}
+    output_list.shift
+    output_list.unshift "Title: #{@list[0]}"
   end
 end
