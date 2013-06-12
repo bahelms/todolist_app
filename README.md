@@ -10,10 +10,10 @@ The filename is optional, and leaving it off will start a new list from scratch.
 
 Current commands
 ----
-* add
-* delete
-* save
-* display
+* add -- not implemented
+* delete -- not implemented
+* save -- not implemented
+* display -- not implemented
 * help
 * quit
 
@@ -22,16 +22,20 @@ Current commands
 
     Enter: add "item" [position_number]
 
-* Example: add "Eat chunky bacon" 1    # Adds the item to the first position in the list.
-* Example: add "Take a shower"         # When the position number is omitted, the item is added to the bottom of the list.
-* Example: add "Brewday List" title    # Changes the title of the list
+* Examples
+
+    * add "Eat chunky bacon" 1    # Adds the item to the first position in the list.
+    * add "Take a shower"         # When the position number is omitted, the item is added to the bottom of the list.
+    * add "Brewday List" title    # Changes the title of the list
 
 (del)ete  -- Deletes an item from the list
 
     Enter: del [position_number]
 
-* Example: del 3    # Deletes the third item in the list
-* Example: del      # Deletes the last item
+* Examples
+
+    * del 3    # Deletes the third item in the list
+    * del      # Deletes the last item
 
 (save) -- Saves the list to a file
 
