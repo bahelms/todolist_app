@@ -1,7 +1,7 @@
 class TodoList
   attr_reader :list, :file
 
-  def initialize(file)
+  def initialize(file="")
     @file = file
     @list = []
 

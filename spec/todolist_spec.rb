@@ -21,6 +21,11 @@ describe TodoList do
       expect(@testlist).to be_an_instance_of TodoList
     end
 
+    it "should have an empty string default file name value" do
+      @testlist = TodoList.new
+      expect(@testlist.file).to eq ""
+    end
+
     it "should store the file name" do
       expect(@testlist.file).to eq 'test.txt'
     end

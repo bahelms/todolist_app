@@ -11,7 +11,7 @@ The filename is optional, and leaving it off will start a new list from scratch.
 Current commands
 ----
 * add
-* del
+* delete
 * save
 * display
 * help
@@ -20,7 +20,7 @@ Current commands
 ----
 (add) -- Adds an item to the list
 
-    $ add "item" [position_number]
+    Enter: add "item" [position_number]
 
 * Example: add "Eat chunky bacon" 1    # Adds the item to the first position in the list.
 * Example: add "Take a shower"         # When the position number is omitted, the item is added to the bottom of the list.
@@ -28,26 +28,26 @@ Current commands
 
 (del)ete  -- Deletes an item from the list
 
-    $ del [position_number]
+    Enter: del [position_number]
 
 * Example: del 3    # Deletes the third item in the list
 * Example: del      # Deletes the last item
 
 (save) -- Saves the list to a file
 
-    $ save
+    Enter: save
 
 (d)isplay -- Displays the list
 
-	$ d
+	Enter: d
 
 (q)uit -- Quits the program
 
-	$ q
+	Enter: q
 
 (h)elp -- Displays the help page with a list of the commands
 
-	$ h
+	Enter: h
 
 Things to add
 ----
