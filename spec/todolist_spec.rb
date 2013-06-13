@@ -16,6 +16,22 @@ describe TodoList do
     @testlist = TodoList.new 'test.txt'
   end
 
+  describe "instance variables" do
+    let(:variables) { @testlist.instance_variables }
+
+    it "should include @file variable" do
+      expect(variables).to include :@file
+    end
+
+    it "should include @list variable" do
+      expect(variables).to include :@list
+    end
+
+    it "should include @title variable" do
+      expect(variables).to include :@title
+    end
+  end
+
   describe "#new" do
     it "should return a TodoList object" do
       expect(@testlist).to be_an_instance_of TodoList
@@ -31,7 +47,7 @@ describe TodoList do
     end
 
     it "should open the file and store its contents" do
-      expect(@testlist.list).to eql @file_list
+      expect(@testlist.list).to eql ['Item1', 'Item2', 'Item3']
     end
 
     it "should only read in a file if it exists" do
@@ -56,7 +72,7 @@ describe TodoList do
 
       it "should change the title when position is 'title' or 0" do
         @testlist.add('New Title', 'title')
-        expect(@testlist.list.first).to eq 'New Title'
+        expect(@testlist.title).to eq 'New Title'
       end
     end
   end
@@ -72,7 +88,7 @@ describe TodoList do
     context "with a position number" do
       it "should delete the item at that position" do
         @testlist.delete(1)
-        expect(@testlist.list[1]).to eq 'Item2'
+        expect(@testlist.list[1]).to eq 'Item3'
       end
     end
   end
@@ -86,7 +102,7 @@ describe TodoList do
     end
 
     it "should return the entire list" do
-      expect(output.size).to eq @testlist.list.size
+      expect(output.size).to eq (@testlist.list.size + 1)
     end
 
     it "should not alter the @list variable" do

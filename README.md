@@ -13,7 +13,7 @@ Current commands
 * add -- not implemented
 * delete -- not implemented
 * save -- not implemented
-* display -- not implemented
+* display
 * help
 * quit
 
