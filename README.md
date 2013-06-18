@@ -60,3 +60,9 @@ Things to add
 * Auto add .txt to file names
 * Multiple lines for one item
 * Break list into different groups
+
+Things To Do
+----
+* Finish bin file
+* Test bin file
+* Wrap app into a gem

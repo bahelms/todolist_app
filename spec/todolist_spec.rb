@@ -67,7 +67,7 @@ describe TodoList do
     context "with a position number" do
       it "should add an item at that position" do
         @testlist.add('New Item', 2)
-        expect(@testlist.list[2]).to eq 'New Item'
+        expect(@testlist.list[1]).to eq 'New Item'
       end
 
       it "should change the title when position is 'title' or 0" do

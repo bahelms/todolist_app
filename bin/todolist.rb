@@ -6,7 +6,7 @@ NL = "\n"
 if ARGV.empty?
   #
 else
-  list = TodoList.new(ARGV[0]) unless ARGV.empty?
+  list = TodoList.new(ARGV[0])
   ARGV.clear
   puts NL, list.output, NL
 
@@ -15,14 +15,14 @@ else
     print "Enter: "
     command = gets.chomp
 
-    regex = /(\w+) ?"?(.+)?"? ?(\d?)/i
+    regex = /(\w+)\s?(".+")?\s?(\d)?/i # captures ""
     md = regex.match command
 
     case md[1]
     when "add"
-      #list.add(md[2], md[3])
+      list.add md[2], md[3]
     when "del", "delete"
-      puts "Delete"
+      list.delete md[3]
     when "save"
       puts "Save"
     when "q", "quit"

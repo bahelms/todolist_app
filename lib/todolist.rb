@@ -7,7 +7,7 @@ class TodoList
 
     if File.exist? @file
       File.open @file do |f| 
-        @title = f.gets
+        @title = f.gets.chomp
         f.each { |line| @list << line.chomp }
       end
     end
@@ -19,13 +19,13 @@ class TodoList
     elsif pos == 0 or pos == 'title'
       @title = item
     else
-      @list.insert(pos.to_i, item)
+      @list.insert(pos.to_i-1, item)
     end
   end
 
   def delete(pos=nil)
     return @list.pop if pos.nil?
-    @list.delete_at(pos)
+    @list.delete_at(pos.to_i-1)
   end
 
   def save
