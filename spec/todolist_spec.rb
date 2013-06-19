@@ -57,6 +57,14 @@ describe TodoList do
   end
 
   describe "#add" do
+    context "without an item" do
+      it "should not add anything to the list" do
+        old_list = @testlist.list.dup
+        @testlist.add(nil)
+        expect(@testlist.list).to eq old_list
+      end
+    end
+
     context "without a position number"  do
       it "should add an item to the end of the list" do
         @testlist.add('New Item')
@@ -110,7 +118,7 @@ describe TodoList do
       expect(array).to eq @testlist.list
     end
 
-    it "should add 'Title: ' to the first item of output" do
+    it "should add 'Title: ' to the first item of the list" do
       expect(output.first).to match /Title: /
     end
 

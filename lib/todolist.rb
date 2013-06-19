@@ -14,6 +14,8 @@ class TodoList
   end
 
   def add(item, pos=nil)
+    return if item.nil?
+    
     if pos.nil?
       @list << item
     elsif pos == 0 or pos == 'title'
@@ -35,8 +37,7 @@ class TodoList
   end
 
   def output
-    output_list = []
-    output_list << "Title: #{@title}"
+    output_list = ["Title: #{@title}"]
     @list.each_with_index { |item, i| output_list << "#{i+1}. #{item}"}
     output_list
   end

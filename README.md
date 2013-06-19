@@ -10,8 +10,8 @@ The filename is optional, and leaving it off will start a new list from scratch.
 
 Current commands
 ----
-* add -- not implemented
-* delete -- not implemented
+* add 
+* delete 
 * save -- not implemented
 * display
 * help
