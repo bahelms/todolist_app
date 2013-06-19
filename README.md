@@ -12,7 +12,7 @@ Current commands
 ----
 * add 
 * delete 
-* save -- not implemented
+* save 
 * display
 * help
 * quit
@@ -57,6 +57,7 @@ Things to add
 ----
 * Save lists to CSV so one file can hold multiple lists
 * Redorder items in a list
+* Edit items/title
 * Auto add .txt to file names
 * Multiple lines for one item
 * Break list into different groups
@@ -64,5 +65,7 @@ Things to add
 Things To Do
 ----
 * Finish bin file
+* Add save feature: get filename on save if none provided
+* Remove quotes from added items
 * Test bin file
 * Wrap app into a gem

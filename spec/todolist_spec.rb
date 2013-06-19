@@ -78,9 +78,14 @@ describe TodoList do
         expect(@testlist.list[1]).to eq 'New Item'
       end
 
-      it "should change the title when position is 'title' or 0" do
+      it "should change the title when position is 'title'" do
         @testlist.add('New Title', 'title')
         expect(@testlist.title).to eq 'New Title'
+      end
+
+      it "should change the title when position is 0" do
+        @testlist.add('New Title2', 0)
+        expect(@testlist.title).to eq 'New Title2'
       end
     end
   end
@@ -130,10 +135,30 @@ describe TodoList do
   end
 
   describe "#save" do
-    it "should save the list to that file" do
+    it "should save the list to the specified file" do
       FileUtils.rm @testlist.file
       @testlist.save
       expect(File.exist?(@testlist.file)).to be_true
+    end
+
+    it "should save the list title as the first line" do
+      @testlist.save
+      first_line = ""
+      File.open(@testlist.file) do |f|
+        first_line = f.gets.chomp
+      end
+
+      expect(@file_list[0]).to eq first_line
+    end
+
+    it "should save the list to the file" do
+      @testlist.save
+      list = []
+      File.foreach(@testlist.file) do |line|
+        list << line.chomp
+      end
+
+      expect(@file_list).to eq list
     end
   end
 

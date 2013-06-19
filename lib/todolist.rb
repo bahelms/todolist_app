@@ -1,5 +1,6 @@
 class TodoList
-  attr_reader :list, :file, :title
+  attr_reader :list, :file
+  attr_accessor :title
 
   def initialize(file="")
     @file = file
@@ -18,7 +19,7 @@ class TodoList
     
     if pos.nil?
       @list << item
-    elsif pos == 0 or pos == 'title'
+    elsif pos == 0 || pos == 'title'
       @title = item
     else
       @list.insert(pos.to_i-1, item)
@@ -32,6 +33,7 @@ class TodoList
 
   def save
     File.open(@file, 'w') do |f|
+      f.puts @title
       @list.each { |item| f.puts item }
     end
   end
