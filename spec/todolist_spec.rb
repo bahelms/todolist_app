@@ -65,27 +65,34 @@ describe TodoList do
       end
     end
 
-    context "without a position number"  do
-      it "should add an item to the end of the list" do
-        @testlist.add('New Item')
-        expect(@testlist.list.last).to eq 'New Item'
-      end
-    end
-
-    context "with a position number" do
-      it "should add an item at that position" do
-        @testlist.add('New Item', 2)
-        expect(@testlist.list[1]).to eq 'New Item'
+    context "with an item" do
+      it "should strip the surrounding quotes" do
+        @testlist.add('"Item4"')
+        expect(@testlist.list[3].count('"')).to eq 0
       end
 
-      it "should change the title when position is 'title'" do
-        @testlist.add('New Title', 'title')
-        expect(@testlist.title).to eq 'New Title'
+      context "without a position number"  do
+        it "should add an item to the end of the list" do
+          @testlist.add('New Item')
+          expect(@testlist.list.last).to eq 'New Item'
+        end
       end
 
-      it "should change the title when position is 0" do
-        @testlist.add('New Title2', 0)
-        expect(@testlist.title).to eq 'New Title2'
+      context "with a position number" do
+        it "should add an item at that position" do
+          @testlist.add('New Item', 2)
+          expect(@testlist.list[1]).to eq 'New Item'
+        end
+
+        it "should change the title when position is 'title'" do
+          @testlist.add('New Title', 'title')
+          expect(@testlist.title).to eq 'New Title'
+        end
+
+        it "should change the title when position is 0" do
+          @testlist.add('New Title2', 0)
+          expect(@testlist.title).to eq 'New Title2'
+        end
       end
     end
   end
@@ -102,6 +109,13 @@ describe TodoList do
       it "should delete the item at that position" do
         @testlist.delete(1)
         expect(@testlist.list[1]).to eq 'Item3'
+      end
+    end
+
+    context "with many position numbers" do
+      it "should delete the items at each position" do
+        @testlist.delete(0, 2)
+        expect(@testlist.list.size).to eq 1
       end
     end
   end
@@ -135,6 +149,12 @@ describe TodoList do
   end
 
   describe "#save" do
+    it "should ask for a filename if @file is empty" do
+      # @testlist = TodoList.new
+      # @testlist.save
+      # 
+    end
+
     it "should save the list to the specified file" do
       FileUtils.rm @testlist.file
       @testlist.save

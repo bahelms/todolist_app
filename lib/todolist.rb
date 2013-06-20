@@ -16,22 +16,30 @@ class TodoList
 
   def add(item, pos=nil)
     return if item.nil?
+    item.gsub!('"', '')
     
     if pos.nil?
       @list << item
     elsif pos == 0 || pos == 'title'
       @title = item
     else
-      @list.insert(pos.to_i-1, item)
+      @list.insert(pos.to_i - 1, item)
     end
   end
 
-  def delete(pos=nil)
-    return @list.pop if pos.nil?
-    @list.delete_at(pos.to_i-1)
+  def delete(*pos)
+    return @list.pop if pos.empty?
+    pos.each do |position|
+      @list.delete_at(position.to_i - 1)
+    end
   end
 
   def save
+    if @file.empty?
+      print "Enter a filename: "
+      @file = gets.chomp
+    end
+    
     File.open(@file, 'w') do |f|
       f.puts @title
       @list.each { |item| f.puts item }

@@ -64,8 +64,7 @@ Things to add
 
 Things To Do
 ----
-* Finish bin file
-* Add save feature: get filename on save if none provided
-* Remove quotes from added items
+* Delete many items at once -- Fix regex to capture many digits
+* Test #save asking for filename
 * Test bin file
 * Wrap app into a gem
