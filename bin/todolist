@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require_relative '../lib/todolist'
-require_relative '../lib/todolist/commands'
 require_relative '../lib/todolist/helpers'
 include Helpers
 
@@ -16,7 +15,7 @@ else
 end
 
 loop do
-  puts NL, Commands::COMMANDS
+  puts NL, COMMANDS
   print "Enter: "
   command = gets.chomp
 
@@ -36,7 +35,7 @@ loop do
   when "q", "quit"
     exit
   when "h", "help"
-    puts Commands::HELP
+    puts HELP
   when "d", "display"
     display list
   else

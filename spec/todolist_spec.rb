@@ -88,11 +88,6 @@ describe TodoList do
           @testlist.add('New Title', 'title')
           expect(@testlist.title).to eq 'New Title'
         end
-
-        it "should change the title when position is 0" do
-          @testlist.add('New Title2', 0)
-          expect(@testlist.title).to eq 'New Title2'
-        end
       end
     end
   end

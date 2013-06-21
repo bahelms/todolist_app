@@ -20,7 +20,7 @@ class TodoList
     
     if pos.nil?
       @list << item
-    elsif pos == 0 || pos == 'title'
+    elsif pos == 'title'
       @title = item
     else
       @list.insert(pos.to_i - 1, item)
